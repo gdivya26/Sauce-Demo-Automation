@@ -4,6 +4,9 @@ import io.cucumber.java.en.*;
 import pages.*;
 import utils.DriverFactory;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import java.time.Duration;
 
 public class Steps {
 
@@ -47,6 +50,10 @@ public class Steps {
     @When("user goes to cart")
     public void cart() {
         products.goToCart();
+
+        new WebDriverWait(driver, Duration.ofSeconds(10))
+            .until(ExpectedConditions.urlContains("cart"));
+
         cart = new CartPage(driver);
     }
 
